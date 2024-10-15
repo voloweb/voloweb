@@ -6,6 +6,7 @@ import Button from '@/components/Shared/Button'
 import './style.css'
 import { toast } from 'react-toastify'
 import Loading from '@/components/Shared/Loading'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 type Inputs = {
   // setor: string
@@ -19,6 +20,7 @@ type Inputs = {
 }
 
 export default function Contact() {
+  const [disabled, setDisabled] = useState<boolean>(true)
   const [loading, setLoading] = useState<boolean>(false)
   const { setMenuActive } = useContext(MenuContext)
 
@@ -26,12 +28,16 @@ export default function Contact() {
     setMenuActive('')
   }, [setMenuActive])
 
+  const onChange = (value: any) => {
+    if (value) setDisabled(false)
+  }
+
   const {
     register,
     reset,
     handleSubmit,
     watch,
-    formState: { errors }
+    formState: { errors, isValid }
   } = useForm<Inputs>()
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setLoading(true)
@@ -206,7 +212,22 @@ export default function Contact() {
               </select>
             </div> */}
 
-            <Button type="submit" className="w-full" aria-label="Enviar">
+            <div className="flex justify-center mb-3">
+              <ReCAPTCHA
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY || ''}
+                onChange={onChange}
+              />
+            </div>
+
+            <Button
+              type="submit"
+              disabled={disabled && isValid}
+              className="g-recaptcha w-full"
+              aria-label="Enviar"
+              data-sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY}
+              data-callback="onChange"
+              data-action="submit"
+            >
               {loading ? <Loading /> : 'Enviar'}
             </Button>
           </form>

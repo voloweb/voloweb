@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify'
 import { MenuProvider } from '@/contexts/MenuContext'
 import Footer from '@/components/Shared/Footer'
 import Navbar from '@/components/Shared/Navbar'
+import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 
 const roboto = Roboto({
@@ -31,6 +32,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${roboto.variable} ${montserrat.variable}`}>
+        <Analytics />
         <MenuProvider>
           <Navbar />
           <main>{children}</main>

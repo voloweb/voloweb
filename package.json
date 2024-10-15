@@ -1,0 +1,47 @@
+{
+  "name": "volo",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "email-dev": "email dev",
+    "dev": "next dev",
+    "build": "next build",
+    "build-start": "next build && next start",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@djpfs/react-vlibras": "^2.0.2",
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.0.18",
+    "@react-email/components": "0.0.15",
+    "next": "^14.1.2",
+    "react": "^18",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.0",
+    "react-intersection-observer": "^9.13.1",
+    "react-lottie-player": "^1.5.6",
+    "react-multi-carousel": "^2.8.4",
+    "react-toastify": "^10.0.4",
+    "resend": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8.55.0",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-config-next": "14.0.4",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "postcss": "^8",
+    "prettier": "3.1.1",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5.3.3"
+  },
+  "main": "index.js",
+  "repository": "https://github.com/goduraes/volo.git",
+  "author": "goduraes <gduraes10@gmail.com>",
+  "license": "MIT"
+}

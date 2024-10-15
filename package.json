@@ -41,7 +41,7 @@
     "typescript": "^5.3.3"
   },
   "main": "index.js",
-  "repository": "https://github.com/goduraes/volo.git",
-  "author": "goduraes <gduraes10@gmail.com>",
+  "repository": "https://github.com/voloweb/voloweb.git",
+  "author": "voloweb <volowebagency@gmail.com>",
   "license": "MIT"
 }

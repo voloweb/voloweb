@@ -5,6 +5,7 @@ import { MenuProvider } from '@/contexts/MenuContext'
 import Footer from '@/components/Shared/Footer'
 import Navbar from '@/components/Shared/Navbar'
 import { Analytics } from '@vercel/analytics/react'
+import Script from 'next/script'
 import './globals.css'
 
 const roboto = Roboto({
@@ -33,6 +34,11 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={`${roboto.variable} ${montserrat.variable}`}>
         <Analytics />
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-KEJRG442C8"
+        />
+        <Script src="/gtag.js" />
         <MenuProvider>
           <Navbar />
           <main>{children}</main>

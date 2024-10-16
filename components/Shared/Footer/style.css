@@ -2,4 +2,7 @@
   clear: both;
   position: relative;
   min-height: 300px;
+  background-image: url('/waves/wave-footer.svg');
+  background-position: left;
+  background-size: cover;
 }

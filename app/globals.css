@@ -95,6 +95,35 @@ button[disabled]:hover {
   cursor: not-allowed;
 }
 
+.wave {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.wave-banner-white {
+  background-image: url('/waves/wave-banner-white.svg');
+}
+
+.wave-about-white {
+  background-position: 0 -150px;
+  background-image: url('/waves/wave-about-white.svg');
+}
+
+.wave-about-gray {
+  background-position: 0 -20px;
+  background-image: url('/waves/wave-about-gray.svg');
+}
+
+.wave-service-gray {
+  background-position: 0 -150px;
+  background-image: url('/waves/wave-service-gray.svg');
+}
+
+.wave-contact-gray {
+  background-image: url('/waves/wave-contact-gray.svg');
+}
+
 /* Scroll Bar */
 ::-webkit-scrollbar {
   width: 10px;

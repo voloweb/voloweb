@@ -20,9 +20,8 @@ const config: Config = {
       colors: {
         black: '#000',
         white: '#fff',
-        footer: '#1F1F1F',
-        ourteam: 'rgba(213, 221, 228, 1)',
-        contact: 'rgba(213, 221, 228, 1)',
+        footer: 'rgba(31, 31, 31, .98)',
+        ourteam: 'rgba(248, 249, 250, 1)',
         primaria: {
           1: '',
           2: '',

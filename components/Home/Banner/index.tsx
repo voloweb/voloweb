@@ -2,7 +2,8 @@
 import Button from '@/components/Shared/Button'
 import Image from 'next/image'
 import HomeBanner from '@/public/home-banner.jpg'
-import Avatar from '@/public/avatar.jpg'
+import AvatarBarbara from '@/public/avatar-barbara.jpg'
+import AvatarPedro from '@/public/avatar-pedro.jpg'
 import { useRouter } from 'next/navigation'
 
 import Microsoft from '@/public/companies/microsoft.svg'
@@ -99,7 +100,7 @@ export default function Banner() {
               <Image
                 className="h-12 w-auto rounded-full"
                 priority
-                src={Avatar}
+                src={AvatarBarbara}
                 alt="Avatar de usuário"
               />
               <div className="flex flex-col px-4">
@@ -112,11 +113,11 @@ export default function Banner() {
               <Image
                 className="h-12 w-auto rounded-full"
                 priority
-                src={Avatar}
+                src={AvatarPedro}
                 alt="Avatar de usuário"
               />
               <div className="flex flex-col px-4">
-                <span className="text-neutral-800 text-sm">Barbara</span>
+                <span className="text-neutral-800 text-sm">Pedro</span>
                 <p className="text-neutra-200 text-sm">
                   Equipe de alta qualidade👏
                 </p>

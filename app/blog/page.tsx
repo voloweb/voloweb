@@ -36,7 +36,12 @@ const Blog = async ({
             >
               <div className="card-content">
                 <div className="card-img">
-                  <Image alt={post.title} src={post.image || ''} fill />
+                  <Image
+                    alt={post.title}
+                    src={post.image || ''}
+                    fill
+                    sizes="100%"
+                  />
                 </div>
                 <div className="card-label rounded-md">
                   {formatDate(post.publishedAt || post.updatedAt, 'dd/MM/yyyy')}

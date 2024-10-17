@@ -8,8 +8,6 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Logo from '@/public/logo-volo-white.svg'
 
-import './style.css'
-
 export default function Footer() {
   const router = useRouter()
   return (

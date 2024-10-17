@@ -3,7 +3,6 @@
 @tailwind utilities;
 @import url('react-toastify/dist/ReactToastify.css');
 
-
 :root {
   --foreground-rgb: 0, 0, 0, 1;
   --background-start-rgb: 248, 249, 250, 1;
@@ -78,6 +77,17 @@ h5 {
 h6 {
   font-size: 16px;
   line-height: 27px;
+}
+
+ul, ol {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+  unicode-bidi: isolate;
 }
 
 ::selection {
@@ -272,6 +282,26 @@ label.required::after {
 #blog-post .blog-content img {
   width: 100%;
   margin: 15px 0 0 0;
+}
+
+#blog-post blockquote {
+  background-color: #DEE2E6;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+#blog-post blockquote::before {
+  content: '"';
+}
+
+#blog-post blockquote::after {
+  content: '"';
+}
+
+.navigation-blog ul {
+  padding: 0;
+  list-style: none;
 }
 
 /* footer */

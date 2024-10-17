@@ -20,7 +20,7 @@ export const BlogPostsPagination = ({
     <nav
       role="navigation"
       aria-label="pagination"
-      className="mx-auto flex w-full justify-center p-10"
+      className="navigation-blog mx-auto flex w-full justify-center p-10"
     >
       <ul className="flex gap-1">
         {pagination.prevPage && (

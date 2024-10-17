@@ -4,55 +4,9 @@ import { signOgImageUrl } from '@/lib/og-image'
 import { wisp } from '@/lib/wisp'
 import { notFound } from 'next/navigation'
 import type { BlogPosting, WithContext } from 'schema-dts'
-import sanitize, { defaults } from 'sanitize-html'
 import { formatDate } from 'date-fns'
 import Image from 'next/image'
-
-export const PostContent = ({ content }: { content: string }) => {
-  const sanitizedContent = sanitize(content, {
-    allowedTags: [
-      'b',
-      'i',
-      'em',
-      'strong',
-      'a',
-      'img',
-      'h1',
-      'h2',
-      'h3',
-      'code',
-      'pre',
-      'p',
-      'li',
-      'ul',
-      'ol',
-      'blockquote',
-      // tables
-      'td',
-      'th',
-      'table',
-      'tr',
-      'tbody',
-      'thead',
-      'tfoot',
-      'small',
-      'div',
-      'iframe'
-    ],
-    allowedAttributes: {
-      ...defaults.allowedAttributes,
-      '*': ['style'],
-      iframe: ['src', 'allowfullscreen', 'style']
-    },
-    allowedIframeHostnames: ['www.youtube.com', 'www.youtube-nocookie.com']
-  })
-  return (
-    <div
-      className="blog-content mx-auto"
-      dangerouslySetInnerHTML={{ __html: sanitizedContent }}
-    ></div>
-  )
-}
+import { PostContent } from '@/components/Blog/PostContent'
 
 export async function generateMetadata({
   params: { slug }
@@ -128,40 +82,35 @@ const Page = async ({ params: { slug } }: { params: Params }) => {
         id="blog-post"
         className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 py-5"
       >
-        <h1 className="font-medium leading-tight text-neutra-700">title</h1>
-        {description && <p>{description}</p>}
-        <PostContent content={content} />
+        <div className="prose lg:prose-xl dark:prose-invert mx-auto break-words">
+          <h1>{title}</h1>
+          {description && <p>{description}</p>}
+          <PostContent content={content} />
 
-        <div>
-          <div className="prose lg:prose-xl dark:prose-invert mx-auto break-words">
-            <h1>{title}</h1>
-            <PostContent content={content} />
-
-            <div className="autor flex items-center gap-4 my-4">
-              <div className="w-10 h-10">
-                <Image
-                  className="rounded-full"
-                  alt="Avatar do autor"
-                  src={author.image || ''}
-                  width={100}
-                  height={100}
-                />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-sm opacity-80">{author.name}</span>
-                <span className="text-sm opacity-80">
-                  {formatDate(publishedAt || createdAt, 'dd/MM/yyyy')}
-                </span>
-              </div>
+          <div className="autor flex items-center gap-4 my-4">
+            <div className="w-10 h-10">
+              <Image
+                className="rounded-full"
+                alt="Avatar do autor"
+                src={author.image || ''}
+                width={100}
+                height={100}
+              />
             </div>
-
-            <div className="opacity-80 text-sm">
-              {tags.map((tag) => (
-                <span key={tag.id} className="text-primary mr-2">
-                  #{tag.name}
-                </span>
-              ))}
+            <div className="flex flex-col">
+              <span className="text-sm opacity-80">{author.name}</span>
+              <span className="text-sm opacity-80">
+                {formatDate(publishedAt || createdAt, 'dd/MM/yyyy')}
+              </span>
             </div>
+          </div>
+
+          <div className="opacity-80 text-sm">
+            {tags.map((tag) => (
+              <span key={tag.id} className="text-primary mr-2">
+                #{tag.name}
+              </span>
+            ))}
           </div>
         </div>
 

@@ -10,6 +10,7 @@ import { MenuContext } from '@/contexts/MenuContext'
 import { useInView } from 'react-intersection-observer'
 
 export default function Home() {
+  const [refHome, inViewHome] = useInView({ threshold: 0.4 })
   const [refOurTeam, inViewOurTeam] = useInView({ threshold: 0.2 })
   const [refServicesOffered, inViewServicesOffered] = useInView({threshold: 0.2})
   const [refCustomerReviews, inViewCustomerReviews] = useInView({ threshold: 0.4 })
@@ -17,17 +18,20 @@ export default function Home() {
 
   const { setMenuActive } = useContext(MenuContext)
 
-  useEffect(() => {
-    if (inViewOurTeam && !inViewServicesOffered && !inViewCustomerReviews && !inViewRefContact) setMenuActive('Sobre')
-    if (inViewServicesOffered && !inViewOurTeam && !inViewCustomerReviews && !inViewRefContact) setMenuActive('Serviços')
-    if (inViewCustomerReviews && !inViewOurTeam && !inViewServicesOffered && !inViewRefContact) setMenuActive('Cases')
-    if (inViewRefContact && !inViewCustomerReviews && !inViewOurTeam && !inViewServicesOffered) setMenuActive('Contato')
-    if (!inViewOurTeam && !inViewServicesOffered && !inViewCustomerReviews && !inViewRefContact) setTimeout(() => setMenuActive('Home'))
-  }, [inViewServicesOffered, inViewOurTeam, inViewCustomerReviews, inViewRefContact,setMenuActive])
+  useEffect(() => {''
+    if (inViewHome) setMenuActive('Home')
+    else if (inViewOurTeam) setMenuActive('Sobre')
+    else if (inViewServicesOffered) setMenuActive('Serviços')
+    else if (inViewCustomerReviews) setMenuActive('Cases')
+    else if (inViewRefContact) setMenuActive('Contato')
+    else  setMenuActive('')
+  }, [inViewHome, inViewServicesOffered, inViewOurTeam, inViewCustomerReviews, inViewRefContact, setMenuActive])
 
   return (
     <>
-      <Banner />
+      <div ref={refHome}>
+        <Banner />
+      </div>
       <div ref={refOurTeam}>
         <OurTeam />
       </div>

@@ -9,7 +9,7 @@ import Logo from '@/public/logo-volo.svg'
 import { NavigationType, navigation } from './navigation'
 import VLibras from '@djpfs/react-vlibras'
 import { MenuContext } from '@/contexts/MenuContext'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
@@ -17,15 +17,23 @@ function classNames(...classes: any) {
 
 export default function Navbar() {
   const router = useRouter()
-  let [isShowing, setIsShowing] = useState(false)
+  const pathName = usePathname()
+  const [isShowing, setIsShowing] = useState(false)
   const [scroll, setScroll] = useState(false)
-  const { menuActive } = useContext(MenuContext)
+  const { menuActive, setMenuActive } = useContext(MenuContext)
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
       setScroll(window.scrollY > 50)
     })
   }, [])
+
+  useEffect(() => {
+    if (pathName.includes('/blog') && menuActive !== 'Blog') {
+      setMenuActive('Blog')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathName])
 
   return (
     <>

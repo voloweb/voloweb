@@ -1,0 +1,37 @@
+#blog-post h1,h2,h3,h4,h5,h6, p {
+  margin: 15px 0;
+}
+
+#blog-post p {
+  margin: 10px 0;
+}
+
+#blog-post ul, ol {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+  unicode-bidi: isolate;
+}
+
+#blog-post .blog-content img {
+  width: 100%;
+}
+
+#blog-post blockquote {
+  background-color: #DEE2E6;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+#blog-post blockquote::before {
+  content: '"';
+}
+
+#blog-post blockquote::after {
+  content: '"';
+}

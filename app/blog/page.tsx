@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { wisp } from '@/lib/wisp'
 import { BlogPostsPagination } from '@/components/Blog/BlogPostsPagination'
 import { formatDate } from 'date-fns'
@@ -11,13 +12,16 @@ const Blog = async ({
 }) => {
   const page = searchParams.page ? Number(searchParams.page) : 1
   const query = searchParams.query ? String(searchParams.query) : ''
-  const result = await wisp.getPosts({ limit: 8, page, query })
+  const tags = searchParams.tags ? String(searchParams.tags).split(",") : []
+  const result = await wisp.getPosts({ limit: 8, page, query, tags })
+
+  const basePath = `blog?query=${query}&tags=${String(tags)}&page=`
 
   return (
     <div className="wave wave-blog-white">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 py-5">
         <h2 className="font-medium leading-tight text-neutra-700 mb-5">Blog</h2>
-        {query && <span className="block mb-5">Resultdo da pesquisa...</span>}
+        {(query || !!tags.length) && <span className="block mb-5">Resultdo da pesquisa...</span>}
 
         {!result.posts.length && (
           <span className="block text-center mb-5">
@@ -30,9 +34,10 @@ const Blog = async ({
             <Link
               href={`/blog/${post.slug}`}
               key={post.id}
-              className={`card content
-                ${page === 1 && !query && i === 0 && 'card-inicial'}
-                ${page === 1 && !query && i === 3 && 'card-final'}`}
+              className={`card content col-span-4 md:col-span-2 lg:col-span-1
+                ${page === 1 && !query && !tags.length && i === 0 && 'col-span-4 row-span-1 md:col-span-2 lg:col-span-2 lg:row-span-2'}
+                ${page === 1 && !query && !tags.length && i === 3 && 'col-span-4 md:col-span-2 lg:col-span-2'}
+              `}
             >
               <div className="card-content">
                 <div className="card-img">
@@ -53,7 +58,7 @@ const Blog = async ({
         </div>
 
         {!!result.posts.length && result.pagination.totalPages !== 1 && (
-          <BlogPostsPagination pagination={result.pagination} />
+          <BlogPostsPagination pagination={result.pagination} basePath={basePath} />
         )}
       </div>
     </div>

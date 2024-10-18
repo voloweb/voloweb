@@ -28,13 +28,11 @@ export default function Navbar() {
   const { menuActive, setMenuActive } = useContext(MenuContext)
 
   const keyUp = (e: any) => {
-    setQuerySearch(e.target.value)
-    if (e.key === 'Enter') {
-      search()
-    }
+    if (e.key === 'Enter') search()
   }
 
   const search = () => {
+    setIsShowing(false)
     router.push(`/blog?query=${querySearch}`)
   }
 
@@ -114,14 +112,14 @@ export default function Navbar() {
               </Button>
             </div> */}
             <div className="hidden md:flex justify-center">
-              {/* <input onKeyUp={(e) => search(e)} /> */}
-
               <div className="w-full max-w-sm min-w-[200px]">
                 <div className="relative">
                   <input
                     type="text"
                     className="w-full h-10 bg-transparent focus:border rounded-md transition duration-300 ease focus:outline-none focus:shadow"
                     placeholder="Pesquisa..."
+                    value={querySearch}
+                    onChange={(e) => setQuerySearch(e.target.value)}
                     onKeyUp={(e) => keyUp(e)}
                   />
 
@@ -152,6 +150,29 @@ export default function Navbar() {
           leaveTo="opacity-0"
         >
           <div className="md:hidden h-[calc(100vh_-_64px)] relative">
+            <div className="w-full px-2 pt-2">
+              <div className="relative">
+                <input
+                  type="text"
+                  className="w-full h-10 bg-transparent focus:border rounded-md transition duration-300 ease focus:outline-none shadow"
+                  placeholder="Pesquisa..."
+                  value={querySearch}
+                  onChange={(e) => setQuerySearch(e.target.value)}
+                  onKeyUp={(e) => keyUp(e)}
+                />
+
+                <button
+                  className="absolute right-1 top-[5px] rounded-md bg-semantica-1 p-1.5 border border-transparent text-center text-sm text-white transition-all hover:opacity-95"
+                  type="button"
+                  onClick={() => search()}
+                >
+                  <MagnifyingGlassIcon
+                    className="block h-4 w-4"
+                    aria-hidden="true"
+                  />
+                </button>
+              </div>
+            </div>
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item: NavigationType) => (
                 <Link
@@ -160,7 +181,7 @@ export default function Navbar() {
                   href={item.href}
                   className={classNames(
                     item.name === menuActive
-                      ? 'border-b-2 border-semantica-1 text-semantica-1'
+                      ? 'font-semibold border-semantica-1 text-semantica-1'
                       : 'text-neutra-700 hover:text-neutra-900',
                     'block px-3 py-2 font-roboto font-normal leading-10'
                   )}

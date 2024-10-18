@@ -8,6 +8,9 @@ import { formatDate } from 'date-fns'
 import Image from 'next/image'
 import { PostContent } from '@/components/Blog/PostContent'
 
+import './style.css'
+import Link from 'next/link'
+
 export async function generateMetadata({
   params: { slug }
 }: {
@@ -78,14 +81,16 @@ const Page = async ({ params: { slug } }: { params: Params }) => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div
-        id="blog-post"
-        className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 py-5"
-      >
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 py-5">
         <div className="prose lg:prose-xl dark:prose-invert mx-auto break-words">
-          <h1>{title}</h1>
+          <h1 className="my-4">{title}</h1>
           {description && <p>{description}</p>}
-          <PostContent content={content} />
+
+          <div id="blog-post">
+            <PostContent content={content} />
+          </div>
+
+          <hr className="my-5" />
 
           <div className="autor flex items-center gap-4 my-4">
             <div className="w-10 h-10">
@@ -107,9 +112,13 @@ const Page = async ({ params: { slug } }: { params: Params }) => {
 
           <div className="opacity-80 text-sm">
             {tags.map((tag) => (
-              <span key={tag.id} className="text-primary mr-2">
+              <Link
+                key={tag.id}
+                href={`/blog?tags=${tag.name}`}
+                className="text-primary mr-2"
+              >
                 #{tag.name}
-              </span>
+              </Link>
             ))}
           </div>
         </div>

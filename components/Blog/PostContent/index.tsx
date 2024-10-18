@@ -8,6 +8,7 @@ export const PostContent = ({ content }: { content: string }) => {
       'em',
       'strong',
       'a',
+      'hr',
       'img',
       'h1',
       'h2',
@@ -18,7 +19,6 @@ export const PostContent = ({ content }: { content: string }) => {
       'ul',
       'ol',
       'blockquote',
-      // tables
       'td',
       'th',
       'table',

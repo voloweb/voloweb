@@ -21,17 +21,18 @@
   width: 100%;
 }
 
-#blog-post blockquote {
+#blog-post pre {
+  white-space: pre-wrap;
   background-color: #DEE2E6;
   padding: 15px;
   border-radius: 8px;
   margin: 15px 0;
 }
 
-#blog-post blockquote::before {
+#blog-post blockquote pre::before {
   content: '"';
 }
 
-#blog-post blockquote::after {
+#blog-post blockquote pre::after {
   content: '"';
 }

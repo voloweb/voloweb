@@ -14,6 +14,7 @@ export const PostContent = ({ content }: { content: string }) => {
       'h2',
       'h3',
       'code',
+      'pre',
       'p',
       'li',
       'ul',

@@ -1,7 +1,11 @@
 'use client'
 import { Fragment, useContext, useEffect, useState } from 'react'
 import { Transition } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import {
+  Bars3Icon,
+  XMarkIcon,
+  MagnifyingGlassIcon
+} from '@heroicons/react/24/outline'
 import Button from '../Button'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -9,7 +13,7 @@ import Logo from '@/public/logo-volo.svg'
 import { NavigationType, navigation } from './navigation'
 import VLibras from '@djpfs/react-vlibras'
 import { MenuContext } from '@/contexts/MenuContext'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
@@ -17,15 +21,35 @@ function classNames(...classes: any) {
 
 export default function Navbar() {
   const router = useRouter()
-  let [isShowing, setIsShowing] = useState(false)
+  const pathName = usePathname()
+  const [isShowing, setIsShowing] = useState(false)
+  const [querySearch, setQuerySearch] = useState('')
   const [scroll, setScroll] = useState(false)
-  const { menuActive } = useContext(MenuContext)
+  const { menuActive, setMenuActive } = useContext(MenuContext)
+
+  const keyUp = (e: any) => {
+    setQuerySearch(e.target.value)
+    if (e.key === 'Enter') {
+      search()
+    }
+  }
+
+  const search = () => {
+    router.push(`/blog?query=${querySearch}`)
+  }
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
       setScroll(window.scrollY > 50)
     })
   }, [])
+
+  useEffect(() => {
+    if (pathName.includes('/blog') && menuActive !== 'Blog') {
+      setMenuActive('Blog')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathName])
 
   return (
     <>
@@ -89,6 +113,31 @@ export default function Navbar() {
                 Contato
               </Button>
             </div> */}
+            <div className="hidden md:flex justify-center">
+              {/* <input onKeyUp={(e) => search(e)} /> */}
+
+              <div className="w-full max-w-sm min-w-[200px]">
+                <div className="relative">
+                  <input
+                    type="text"
+                    className="w-full h-10 bg-transparent focus:border rounded-md transition duration-300 ease focus:outline-none focus:shadow"
+                    placeholder="Pesquisa..."
+                    onKeyUp={(e) => keyUp(e)}
+                  />
+
+                  <button
+                    className="absolute right-1 top-[5px] rounded-md bg-semantica-1 p-1.5 border border-transparent text-center text-sm text-white transition-all hover:opacity-95"
+                    type="button"
+                    onClick={() => search()}
+                  >
+                    <MagnifyingGlassIcon
+                      className="block h-4 w-4"
+                      aria-hidden="true"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 

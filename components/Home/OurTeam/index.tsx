@@ -126,9 +126,9 @@ export default function OurTeam() {
               </div>
 
               <div className="flex flex-col justify-center col-span-1">
-                <h2 className="font-medium leading-tight text-[30px] md:text-[54px] text-neutra-700 mb-4">
+                <h1 className="font-medium leading-tight text-neutra-700 mb-4">
                   Sobre
-                </h2>
+                </h1>
                 <p className="text-neutra-600 mb-2">
                   <span className="text-neutra-700">Inicialmente</span>,
                   agradecemos por dedicar seu tempo para nos conhecer melhor.
@@ -164,9 +164,9 @@ export default function OurTeam() {
           <div className="flex flex-col justify-center items-center">
             <div className="grid grid-cols-1 grid-cols-re md:grid-cols-2 gap-5 mx-auto max-w-7xl py-10 md:py-14 px-2">
               <div className="flex flex-col justify-center col-span-1 order-2 md:order-1">
-                <h2 className="font-medium leading-tight text-[30px] md:text-[54px] text-neutra-700 mb-4">
+                <h1 className="font-medium leading-tight text-neutra-700 mb-4">
                   Áreas de atuação:
-                </h2>
+                </h1>
                 <ul className="mb-4">
                   {textAreas.map((item: TextAbout) => (
                     <li key={item.label} className="flex gap-2 mt-2">
@@ -222,9 +222,9 @@ export default function OurTeam() {
               </div>
 
               <div className="flex flex-col justify-center col-span-1">
-                <h2 className="font-medium leading-tight text-[30px] md:text-[54px] text-neutra-700 mb-4">
+                <h1 className="font-medium leading-tight text-neutra-700 mb-4">
                   Por que escolher a Volo?
-                </h2>
+                </h1>
                 {/* <p className="text-neutra-600 mb-5">
                   Suporte confiável, economia de custos e tranquilidade para o seu
                   negócio. Deixe-nos cuidar da tecnologia para você!

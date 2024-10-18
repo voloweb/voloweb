@@ -299,6 +299,7 @@ label.required::after {
   content: '"';
 }
 
+footer,
 .navigation-blog ul {
   padding: 0;
   list-style: none;
@@ -313,6 +314,12 @@ label.required::after {
   background-position: left;
   background-size: cover;
 }
+
+.footer ul {
+  padding: 0;
+  list-style: none;
+}
+
 /* footer */
 
 /* Scroll Bar */

@@ -1,22 +1,29 @@
+/* eslint-disable prettier/prettier */
 import { RelatedPosts } from '@/components/Blog/RelatedPosts'
 import { config } from '@/config'
 import { signOgImageUrl } from '@/lib/og-image'
-import { wisp } from '@/lib/wisp'
 import { notFound } from 'next/navigation'
 import type { BlogPosting, WithContext } from 'schema-dts'
 import { formatDate } from 'date-fns'
 import Image from 'next/image'
 import { PostContent } from '@/components/Blog/PostContent'
+import Link from 'next/link'
+import { TagInPost } from '@wisp-cms/client'
 
 import './style.css'
-import Link from 'next/link'
 
 export async function generateMetadata({
   params: { slug }
 }: {
   params: Params
 }) {
-  const result = await wisp.getPost(slug)
+  const baseApi = `${process.env.NEXT_PUBLIC_BLOG_BASE_URL}/${process.env.NEXT_PUBLIC_BLOG_ID}`
+  const path = `${baseApi}/posts/${slug}`
+
+  //12 hours
+  const res = await fetch(path, { next: { revalidate: 43200 } })
+  const result = await res.json()
+
   if (!result || !result.post) {
     return {
       title: 'Blog post not found'
@@ -42,8 +49,18 @@ interface Params {
 }
 
 const Page = async ({ params: { slug } }: { params: Params }) => {
-  const result = await wisp.getPost(slug)
-  const { posts } = await wisp.getRelatedPosts({ slug, limit: 3 })
+  const baseApi = `${process.env.NEXT_PUBLIC_BLOG_BASE_URL}/${process.env.NEXT_PUBLIC_BLOG_ID}`
+
+  //12 hours
+  const path = `${baseApi}/posts/${slug}`
+  const res = await fetch(path, { next: { revalidate: 43200 } })
+  const result = await res.json()
+
+  // 1 hour
+  const pathRelatedPosts = `${baseApi}/posts/${slug}/related?limit=3`
+  const resRelatedPosts = await fetch(pathRelatedPosts, { next: { revalidate: 3600 } })
+  let resultRelatedPosts = await resRelatedPosts.json()
+  resultRelatedPosts = resultRelatedPosts.posts
 
   if (!result || !result.post) {
     return notFound()
@@ -111,7 +128,7 @@ const Page = async ({ params: { slug } }: { params: Params }) => {
           </div>
 
           <div className="opacity-80 text-sm">
-            {tags.map((tag) => (
+            {tags.map((tag: TagInPost) => (
               <Link
                 key={tag.id}
                 href={`/blog?tags=${tag.name}`}
@@ -123,7 +140,7 @@ const Page = async ({ params: { slug } }: { params: Params }) => {
           </div>
         </div>
 
-        <RelatedPosts posts={posts} />
+        <RelatedPosts posts={resultRelatedPosts} />
       </div>
     </div>
   )

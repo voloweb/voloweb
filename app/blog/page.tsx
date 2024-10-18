@@ -52,7 +52,7 @@ const Blog = async ({
           ))}
         </div>
 
-        {!!result.posts.length && (
+        {!!result.posts.length && result.pagination.totalPages !== 1 && (
           <BlogPostsPagination pagination={result.pagination} />
         )}
       </div>

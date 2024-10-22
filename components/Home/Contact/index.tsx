@@ -61,7 +61,10 @@ export default function Contact() {
 
   return (
     <div className="wave wave-contact-gray bg-white">
-      <div id="contato" className="px-5 py-10 md:py-14 scroll-mt-16">
+      <div
+        id="contato"
+        className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10 py-10 md:py-14 scroll-mt-16"
+      >
         <div className="contact mx-auto max-w-2xl py-3">
           <div className="col-span-1">
             <div className="contact-header md:px-16 mb-11">

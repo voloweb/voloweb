@@ -11,8 +11,8 @@ import Logo from '@/public/logo-volo-white.svg'
 export default function Footer() {
   const router = useRouter()
   return (
-    <footer className="footer flex flex-col justify-center items-center px-5 py-5 md:py-0 bg-footer text-neutra-200">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mx-auto max-w-7xl px-2 py-4 sm:px-6 lg:px-8 w-full">
+    <footer className="footer flex flex-col justify-center items-center bg-footer text-neutra-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-10 py-5 md:py-0 w-full">
         <div className="flex flex-col col-span-1">
           {/* <h3 className="font-medium text-neutra-50 font-montserrat leading-10 text-4xl pb-4">
             Quer receber nossas novidades?

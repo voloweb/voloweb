@@ -11,6 +11,7 @@ import Link from 'next/link'
 import { TagInPost } from '@wisp-cms/client'
 
 import './style.css'
+import { Share } from '@/components/Blog/Share'
 
 export async function generateMetadata({
   params: { slug }
@@ -98,12 +99,15 @@ const Page = async ({ params: { slug } }: { params: Params }) => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 py-5">
+
+      <Share url={`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/${slug}`} />
+
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10 py-5">
         <div className="prose lg:prose-xl dark:prose-invert mx-auto break-words">
           <h1 className="my-4">{title}</h1>
           {description && <p>{description}</p>}
 
-          <div id="blog-post">
+          <div className="blog-post">
             <PostContent content={content} />
           </div>
 

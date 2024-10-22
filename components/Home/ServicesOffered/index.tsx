@@ -51,28 +51,24 @@ export default function ServicesOffered() {
     <div className="wave wave-service-gray bg-white">
       <div
         id="servicos"
-        className="flex justify-center items-center px-5 scroll-mt-16"
+        className="flex justify-center items-center scroll-mt-16 mx-auto max-w-7xl py-10 md:py-14 px-5 sm:px-6 lg:px-10"
       >
-        <div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mx-auto max-w-7xl py-10 md:py-14 px-2">
-            <div className="col-span-1">
-              <h1 className="leading-tight">Nossos Serviços</h1>
-            </div>
-            {cards.map((item: CardsType) => (
-              <div key={item.title} className="col-span-1">
-                <Image
-                  className="w-7 h-7"
-                  priority
-                  src={item.icone}
-                  alt={`Ícone do ${item.title}`}
-                />
-                <h3 className="text-xl text-neutra-800 my-4">{item.title}</h3>
-                <p className="text-neutra-600 service-description">
-                  {item.text}
-                </p>
-              </div>
-            ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div className="col-span-1">
+            <h1 className="leading-tight">Nossos Serviços</h1>
           </div>
+          {cards.map((item: CardsType) => (
+            <div key={item.title} className="col-span-1">
+              <Image
+                className="w-7 h-7"
+                priority
+                src={item.icone}
+                alt={`Ícone do ${item.title}`}
+              />
+              <h3 className="text-xl text-neutra-800 my-4">{item.title}</h3>
+              <p className="text-neutra-600 service-description">{item.text}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

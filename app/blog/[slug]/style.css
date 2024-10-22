@@ -1,12 +1,12 @@
-#blog-post h1,h2,h3,h4,h5,h6, p {
+.blog-post h1,h2,h3,h4,h5,h6, p {
   margin: 15px 0;
 }
 
-#blog-post p {
+.blog-post p {
   margin: 10px 0;
 }
 
-#blog-post ul, ol {
+.blog-post ul, ol {
   display: block;
   list-style-type: disc;
   margin-block-start: 1em;
@@ -17,11 +17,11 @@
   unicode-bidi: isolate;
 }
 
-#blog-post .blog-content img {
+.blog-post .blog-content img {
   width: 100%;
 }
 
-#blog-post pre {
+.blog-post pre {
   white-space: pre-wrap;
   background-color: #DEE2E6;
   padding: 15px;
@@ -29,10 +29,10 @@
   margin: 15px 0;
 }
 
-#blog-post blockquote pre::before {
+.blog-post blockquote pre::before {
   content: '"';
 }
 
-#blog-post blockquote pre::after {
+.blog-post blockquote pre::after {
   content: '"';
 }

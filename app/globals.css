@@ -265,6 +265,23 @@ label.required::after {
 }
 /* footer */
 
+/* share btns */
+.share-btns {
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+  z-index: 100;
+}
+
+@media (max-width: 1024px) {
+  .share-btns {
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+  }
+}
+/* share btns */
+
 /* Scroll Bar */
 ::-webkit-scrollbar {
   width: 10px;

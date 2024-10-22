@@ -25,7 +25,7 @@ const Blog = async ({
 
   return (
     <div className="wave wave-blog-white">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 py-5">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10 py-5">
         <h2 className="font-medium leading-tight text-neutra-700 mb-5">Blog</h2>
         {(query || !!tags.length) && (
           <span className="block mb-5">Resultdo da pesquisa...</span>

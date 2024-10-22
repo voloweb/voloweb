@@ -1,7 +1,5 @@
 /* eslint-disable prettier/prettier */
 import { RelatedPosts } from '@/components/Blog/RelatedPosts'
-import { config } from '@/config'
-import { signOgImageUrl } from '@/lib/og-image'
 import { notFound } from 'next/navigation'
 import type { BlogPosting, WithContext } from 'schema-dts'
 import { formatDate } from 'date-fns'
@@ -32,7 +30,6 @@ export async function generateMetadata({
   }
 
   const { title, description, image } = result.post
-  const generatedOgImage = signOgImageUrl({ title, brand: config.blog.name })
 
   return {
     title,
@@ -40,7 +37,7 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      images: image ? [image, generatedOgImage] : [generatedOgImage]
+      images: image ? [image] : [`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/icone-volo.png`]
     }
   }
 }

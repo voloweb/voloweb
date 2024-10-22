@@ -1,4 +1,10 @@
-.blog-post h1,h2,h3,h4,h5,h6, p {
+.blog-post h1,
+.blog-post h2,
+.blog-post h3,
+.blog-post h4,
+.blog-post h5,
+.blog-post h6,
+.blog-post p {
   margin: 15px 0;
 }
 
@@ -6,7 +12,8 @@
   margin: 10px 0;
 }
 
-.blog-post ul, ol {
+.blog-post ul,
+ol {
   display: block;
   list-style-type: disc;
   margin-block-start: 1em;
@@ -23,7 +30,7 @@
 
 .blog-post pre {
   white-space: pre-wrap;
-  background-color: #DEE2E6;
+  background-color: #dee2e6;
   padding: 15px;
   border-radius: 8px;
   margin: 15px 0;

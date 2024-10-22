@@ -9,11 +9,12 @@ export default function ButtonsSocial() {
     <ul className="social-links flex gap-4">
       <li>
         <a
-          href=""
+          href="https://www.linkedin.com/company/volo-ag%C3%AAncia-digital"
           rel="noopener noreferrer"
           className="hover:opacity-80"
           aria-label="Acesse nossa página do Facebook"
           role="link"
+          target="_blank"
         >
           <Image
             className="h-6 w-auto"

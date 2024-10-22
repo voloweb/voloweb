@@ -97,7 +97,7 @@ const Page = async ({ params: { slug } }: { params: Params }) => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <Share url={`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/${slug}`} />
+      <Share url={`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/blog/${slug}`} />
 
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10 py-5">
         <div className="prose lg:prose-xl dark:prose-invert mx-auto break-words">

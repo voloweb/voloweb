@@ -37,7 +37,7 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      images: image ? [image] : [`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/icone-volo.png`]
+      images: image ? [image] : [`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/logo.png`]
     }
   }
 }

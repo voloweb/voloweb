@@ -24,13 +24,7 @@ export const metadata: Metadata = {
   title: 'Volo',
   description: 'Turbinando sua empresa com as tecnologias de ponta',
   openGraph: {
-    images: [
-      {
-        url: `${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/icone-volo.png`,
-        width: 300,
-        height: 300
-      }
-    ]
+    images: [`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/logo.png`]
   }
 }
 

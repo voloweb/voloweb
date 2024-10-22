@@ -40,7 +40,7 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      images: image ? [generatedOgImage, image] : [generatedOgImage]
+      images: image ? [image, generatedOgImage] : [generatedOgImage]
     }
   }
 }

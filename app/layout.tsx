@@ -22,9 +22,9 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: 'Volo',
-  description: 'Turbinando sua empresa com as tecnologias de ponta',
+  description: 'Seu parceiro em soluções digitais',
   openGraph: {
-    images: [`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/logo.png`]
+    images: [`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/icone-volo.png`]
   }
 }
 

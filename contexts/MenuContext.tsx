@@ -1,5 +1,6 @@
 'use client'
 import { createContext, useEffect, useState } from 'react'
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 interface MenuContextData {
   menuActive: string
   setMenuActive: Function
@@ -22,8 +23,13 @@ export function MenuProvider({ children, ...rest }: any) {
   }
 
   return (
-    <MenuContext.Provider value={{ menuActive: currentMenu, setMenuActive }}>
-      {children}
-    </MenuContext.Provider>
+    <GoogleReCaptchaProvider
+      reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY || ''}
+      language="pt-BR"
+    >
+      <MenuContext.Provider value={{ menuActive: currentMenu, setMenuActive }}>
+        {children}
+      </MenuContext.Provider>
+    </GoogleReCaptchaProvider>
   )
 }

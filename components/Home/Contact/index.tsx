@@ -224,7 +224,7 @@ export default function Contact() {
 
               <Button
                 type="submit"
-                disabled={disabled && isValid}
+                disabled={(disabled && isValid) || loading}
                 className="g-recaptcha w-full"
                 aria-label="Enviar"
                 data-sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY}

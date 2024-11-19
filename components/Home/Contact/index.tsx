@@ -1,11 +1,11 @@
 'use client'
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { MenuContext } from '@/contexts/MenuContext'
-import { useForm, SubmitHandler, UseFormReset } from 'react-hook-form'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import Button from '@/components/Shared/Button'
 import { toast } from 'react-toastify'
 import Loading from '@/components/Shared/Loading'
-import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 type Inputs = {
   // setor: string
@@ -19,62 +19,44 @@ type Inputs = {
 }
 
 export default function Contact() {
+  const [disabled, setDisabled] = useState<boolean>(true)
   const [loading, setLoading] = useState<boolean>(false)
   const { setMenuActive } = useContext(MenuContext)
-  const { executeRecaptcha } = useGoogleReCaptcha()
-
-  const handleReCaptchaVerify = useCallback(
-    async (data: Inputs, reset: UseFormReset<Inputs>) => {
-      if (!executeRecaptcha) {
-        toast.error('Execute recaptcha not yet available', {
-          position: 'bottom-center',
-          hideProgressBar: true,
-          draggable: true,
-          theme: 'colored'
-        })
-        return
-      }
-
-      const token = await executeRecaptcha()
-      if (token) {
-        setLoading(true)
-        try {
-          await fetch(
-            `${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/api/contato`,
-            {
-              method: 'POST',
-              body: JSON.stringify(data)
-            }
-          )
-            .then((response) => response.json())
-            .then((data) => {
-              if (data.error) throw data.error
-            })
-
-          toast.success('E-mail de contato enviado com sucesso!')
-          reset()
-        } catch (error) {
-          toast.error('Ops, algo de errado aconteceu!')
-        } finally {
-          setLoading(false)
-        }
-      }
-    },
-    [executeRecaptcha]
-  )
 
   useEffect(() => {
     setMenuActive('')
   }, [setMenuActive])
 
+  const onChange = (value: any) => {
+    if (value) setDisabled(false)
+  }
+
   const {
     register,
     reset,
     handleSubmit,
+    watch,
     formState: { errors, isValid }
   } = useForm<Inputs>()
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    handleReCaptchaVerify(data, reset)
+    setLoading(true)
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/api/contato`, {
+        method: 'POST',
+        body: JSON.stringify(data)
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.error) throw data.error
+        })
+
+      toast.success('E-mail de contato enviado com sucesso!')
+      reset()
+    } catch (error) {
+      toast.error('Ops, algo de errado aconteceu!')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -233,11 +215,21 @@ export default function Contact() {
                 </select>
               </div> */}
 
+              <div className="flex justify-center mb-3">
+                <ReCAPTCHA
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY || ''}
+                  onChange={onChange}
+                />
+              </div>
+
               <Button
                 type="submit"
-                disabled={loading}
+                disabled={disabled && isValid}
                 className="g-recaptcha w-full"
                 aria-label="Enviar"
+                data-sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY}
+                data-callback="onChange"
+                data-action="submit"
               >
                 {loading ? <Loading /> : 'Enviar'}
               </Button>

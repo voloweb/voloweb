@@ -217,6 +217,7 @@ export default function Contact() {
 
               <div className="flex justify-center mb-3">
                 <ReCAPTCHA
+                  hl="pt-BR"
                   sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY || ''}
                   onChange={onChange}
                 />

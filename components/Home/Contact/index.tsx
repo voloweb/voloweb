@@ -27,7 +27,7 @@ export default function Contact() {
     setMenuActive('')
   }, [setMenuActive])
 
-  const onChange = (value: any) => {
+  const onChange = (value: string | null) => {
     if (value) setDisabled(false)
   }
 
@@ -225,11 +225,8 @@ export default function Contact() {
               <Button
                 type="submit"
                 disabled={(disabled && isValid) || loading}
-                className="g-recaptcha w-full"
+                className="w-full"
                 aria-label="Enviar"
-                data-sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY}
-                data-callback="onChange"
-                data-action="submit"
               >
                 {loading ? <Loading /> : 'Enviar'}
               </Button>

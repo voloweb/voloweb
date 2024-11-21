@@ -3,11 +3,12 @@ import Image from 'next/image'
 import Facebook from '@/public/social-icons/facebook.svg'
 import Instagram from '@/public/social-icons/instagram.svg'
 import LinkedIn from '@/public/social-icons/linkedin.svg'
+import WhatsApp from '@/public/social-icons/whatsapp.svg'
 
 export default function ButtonsSocial() {
   return (
     <ul className="social-links flex gap-4">
-      <li>
+      {/* <li>
         <a
           href=""
           rel="noopener noreferrer"
@@ -38,6 +39,23 @@ export default function ButtonsSocial() {
             priority
             src={Instagram}
             alt="Ícone do instagram"
+          />
+        </a>
+      </li> */}
+      <li>
+        <a
+          href="https://api.whatsapp.com/send?phone=55031992076363&text="
+          rel="noopener noreferrer"
+          className="hover:opacity-80"
+          aria-label="Acesse nossa página do LinkedIn"
+          role="link"
+          target="_blank"
+        >
+          <Image
+            className="h-6 w-auto"
+            priority
+            src={WhatsApp}
+            alt="Ícone do WhatsApp"
           />
         </a>
       </li>

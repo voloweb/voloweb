@@ -58,7 +58,7 @@ export default function Banner() {
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">
         <div
           // className={`grid grid-cols-1 md:grid-cols-2 gap-5 py-5 min-h-[calc(100vh_-_164px)]`}
-          className={`grid grid-cols-1 md:grid-cols-2 gap-5 py-5 min-h-[calc(100vh_-_64px)]`}
+          className={`grid grid-cols-1 md:grid-cols-2 gap-5 py-5 min-h-0 xl:min-h-[calc(100vh_-_64px)]`}
         >
           <div className="flex flex-col justify-center col-span-1">
             <h2 className="leading-none text-[50px] md:text-[75px] text-neutra-800">
